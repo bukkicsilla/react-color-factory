@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import ColorList from "./ColorList";
+import Color from "./Color";
 
-function App() {
+function App({ colors }) {
+  /*colors = [
+    { name: "red", value: "#FF0000" },
+    { name: "blue", value: "#0000FF" },
+    { name: "green", value: "#00FF00" },
+  ];*/
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/colors" element={<ColorList colors={colors} />} />
+        <Route path="/colors/:color" element={<Color />} />
+      </Routes>
     </div>
   );
 }
-
+App.defaultProps = {
+  colors: [
+    { name: "red", value: "#FF0000" },
+    { name: "blue", value: "#0000FF" },
+    { name: "green", value: "#00FF00" },
+  ],
+};
 export default App;
